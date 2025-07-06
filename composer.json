@@ -1,0 +1,19 @@
+{
+    "name": "tren/multi-saver-bot",
+    "type": "project",
+    "require": {
+        "irazasyed/telegram-bot-sdk": "^3.15"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Tren\\MultiSaverBot\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "agshin2004",
+            "email": "nadirov.main@gmail.com"
+        }
+    ]
+}
