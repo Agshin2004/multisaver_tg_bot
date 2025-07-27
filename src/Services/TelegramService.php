@@ -20,7 +20,6 @@ class TelegramService
 
     public function sendText(int $chatId, string $text): void
     {
-        echo $text;
         downloadSoundcloud($text);
 
         $this->telegram->sendMessage([
@@ -34,6 +33,14 @@ class TelegramService
         $this->telegram->sendPhoto([
             'chat_id' => $chatId,
             'photo' => \Telegram\Bot\FileUpload\InputFile::create($url),
+        ]);
+    }
+
+    public function sendAudio(int $chatId, string $url): void
+    {
+        $this->telegram->sendAudio([
+            'chat_id' => $chatId,
+            'audio' => \Telegram\Bot\FileUpload\InputFile::create($url)
         ]);
     }
 
