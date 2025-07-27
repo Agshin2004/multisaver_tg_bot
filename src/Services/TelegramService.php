@@ -20,6 +20,9 @@ class TelegramService
 
     public function sendText(int $chatId, string $text): void
     {
+        echo $text;
+        downloadSoundcloud($text);
+
         $this->telegram->sendMessage([
             'chat_id' => $chatId,
             'text' => $text,

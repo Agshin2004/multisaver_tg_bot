@@ -23,7 +23,7 @@ class MessageHandler
             return;
         }
 
-        $this->tgService->sendText($chatId, "You said: $text");
+        $this->tgService->sendText($chatId, $text);
 
         $this->tgService->sendPhoto($chatId, 'https://c1.wallpaperflare.com/preview/589/683/831/napoleon-bonaparte-france-emperor-reiter.jpg');
     }
