@@ -23,8 +23,10 @@ class MessageHandler
             return;
         }
 
-        if (isSoundcloud($text)) {
+        if (!empty($text) && isSoundcloud($text)) {
+            echo 'here';
             $localFilepath = downloadSoundcloud($text);
+            echo $localFilepath;
             $this->tgService->sendAudio($chatId, $localFilepath);
 
             return;

@@ -1,18 +1,18 @@
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use Handlers\MessageHandler;
 use Services\TelegramService;
 
 // bootstrap the app
-$telegram = require __DIR__.'/config/telegram.php';
+$telegram = require __DIR__ . '/config/telegram.php';
 $tgService = new TelegramService($telegram);
 $handler = new MessageHandler($tgService);
 
 // persisting offset; decided to move into own file for clarity
-$offsetFile = __DIR__.'/storage/offset.txt';
-$offset = file_exists($offsetFile) ? (int) file_get_contents($offsetFile) : 0;
+$offsetFile = base_path('src/Storage/offset.txt');
+$offset = getLatestOffset($tgService);
 
 while (true) {
     $updates = $tgService->getUpdates($offset);
@@ -22,6 +22,8 @@ while (true) {
     }
 
     foreach ($updates as $update) {
+        print_r($update);
+
         $updateId = $update->updateId;
         $message = $update->getMessage();
 

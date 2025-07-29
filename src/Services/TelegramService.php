@@ -10,18 +10,17 @@ class TelegramService
     {
     }
 
-    public function getUpdates(int $offset): array
+    public function getUpdates(int $offset, ?int $limit = 1): array
     {
         return $this->telegram->getUpdates([
             'offset' => $offset,
+            'limit' => $limit,
             'timeout' => 30,
         ]);
     }
 
     public function sendText(int $chatId, string $text): void
     {
-        downloadSoundcloud($text);
-
         $this->telegram->sendMessage([
             'chat_id' => $chatId,
             'text' => $text,
