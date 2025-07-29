@@ -26,6 +26,7 @@
     "id": "TASK_4",
     "priority": "CRITICAL",
     "tags": [
+      "Done",
       "MultiSaver"
     ],
     "description": "Add download to queue and download from queue",

@@ -7,6 +7,8 @@ use Telegram\Bot\Objects\Message;
 
 class MessageHandler
 {
+
+
     public function __construct(private TelegramService $tgService)
     {
     }
@@ -26,7 +28,7 @@ class MessageHandler
         if (true) {
 //            $localFilepath = downloadSoundcloud($text);
             enqueueDownload($text, $chatId);
-            echo '12';
+            //echo '12';
 //            echo $localFilepath;
 //            $this->tgService->sendAudio($chatId, $localFilepath);
 
