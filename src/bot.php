@@ -6,7 +6,8 @@ use Handlers\MessageHandler;
 use Services\TelegramService;
 
 // bootstrap the app
-$telegram = require __DIR__ . '/config/telegram.php';
+//$telegram = require __DIR__ . '/config/telegram.php';
+$telegram = require base_path('src/Config/telegram.php'); // __DIR__ . '/config/telegram.php';
 $tgService = new TelegramService($telegram);
 $handler = new MessageHandler($tgService);
 

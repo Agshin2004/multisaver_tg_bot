@@ -23,10 +23,12 @@ class MessageHandler
             return;
         }
 
-        if (!empty($text) && isSoundcloud($text)) {
-            $localFilepath = downloadSoundcloud($text);
-            echo $localFilepath;
-            $this->tgService->sendAudio($chatId, $localFilepath);
+        if (true) {
+//            $localFilepath = downloadSoundcloud($text);
+            enqueueDownload($text, $chatId);
+            echo '12';
+//            echo $localFilepath;
+//            $this->tgService->sendAudio($chatId, $localFilepath);
 
             return;
         }

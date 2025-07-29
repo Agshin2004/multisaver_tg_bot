@@ -62,7 +62,6 @@ function downloadSoundcloud(string $soundcloudUrl): string
 {
     $escapedUrl = escapeshellarg($soundcloudUrl);
     $outputFolder = base_path("downloads");
-    enqueueDownload($soundcloudUrl);
     if (!is_dir($outputFolder)) {
         mkdir($outputFolder, 0777, true);
     }
@@ -73,4 +72,11 @@ function downloadSoundcloud(string $soundcloudUrl): string
     $cmd = "yt-dlp.exe -x --audio-format mp3 $escapedUrl -o $fullFilePath --ffmpeg-location C:\Users\Agshin.Nadirov\Downloads\\ffmpeg-2025-07-23-git-829680f96a-full_build\bin\\ffmpeg.exe";
     exec($cmd);
     return $fullFilePath;
+}
+
+
+function downloadFromQueue()
+{
+    $queueFilePath = base_path('src/Storage/queue.json');
+
 }
