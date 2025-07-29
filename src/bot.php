@@ -22,7 +22,7 @@ while (true) {
     }
 
     foreach ($updates as $update) {
-        print_r($update);
+        // print_r($update);
 
         $updateId = $update->updateId;
         $message = $update->getMessage();
