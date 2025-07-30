@@ -15,6 +15,7 @@ class MessageHandler
 
     public function handle(Message $message): void
     {
+//        dd($message);
         $chatId = $message->getChat()->getId();
         $text = $message->getText();
 
@@ -25,7 +26,7 @@ class MessageHandler
             return;
         }
 
-        if (true) {
+        if (!empty($text) && isSoundcloud($text)) {
 //            $localFilepath = downloadSoundcloud($text);
             enqueueDownload($text, $chatId);
             //echo '12';

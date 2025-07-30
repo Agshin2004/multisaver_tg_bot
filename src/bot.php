@@ -27,9 +27,12 @@ while (true) {
 
         $updateId = $update->updateId;
         $message = $update->getMessage();
-
+//        dd($message);
         if ($message) {
-            $handler->handle($message);
+            $message = $update->getMessage();
+            if ($message instanceof \Telegram\Bot\Objects\Message) {
+                $handler->handle($message);
+            }
         }
 
         $offset = $updateId + 1;

@@ -3,6 +3,7 @@
 namespace Services;
 
 use Telegram\Bot\Api;
+use Telegram\Bot\Exceptions\TelegramSDKException;
 
 class TelegramService
 {
@@ -21,10 +22,14 @@ class TelegramService
 
     public function sendText(int $chatId, string $text): void
     {
-        $this->telegram->sendMessage([
-            'chat_id' => $chatId,
-            'text' => $text,
-        ]);
+        try {
+            $this->telegram->sendMessage([
+                'chat_id' => $chatId,
+                'text' => $text,
+            ]);
+        } catch (TelegramSDKException $e) {
+            echo $e->getMessage();
+        }
     }
 
     public function sendPhoto(int $chatId, string $url): void
