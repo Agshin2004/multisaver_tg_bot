@@ -15,29 +15,23 @@ class MessageHandler
 
     public function handle(Message $message): void
     {
-//        dd($message);
         $chatId = $message->getChat()->getId();
         $text = $message->getText();
 
         if ($text === '/start') {
             $this->tgService->sendText($chatId, 'Welcome to the bot!');
-            $this->tgService->sendSticker($chatId, 'https://cdn2.combot.org/welcomegooferz/webp/0xf09f8ea3.webp');
+//            $this->tgService->sendSticker($chatId, 'https://cdn2.combot.org/welcomegooferz/webp/0xf09f8ea3.webp');
 
             return;
         }
 
-        if (!empty($text) && isSoundcloud($text)) {
-//            $localFilepath = downloadSoundcloud($text);
+//        if (!empty($text) && isSoundcloud($text)) {
             enqueueDownload($text, $chatId);
-            //echo '12';
-//            echo $localFilepath;
-//            $this->tgService->sendAudio($chatId, $localFilepath);
-
             return;
-        }
+//        }
 
         $this->tgService->sendText($chatId, $text);
 
-        $this->tgService->sendPhoto($chatId, 'https://c1.wallpaperflare.com/preview/589/683/831/napoleon-bonaparte-france-emperor-reiter.jpg');
+//        $this->tgService->sendPhoto($chatId, 'https://c1.wallpaperflare.com/preview/589/683/831/napoleon-bonaparte-france-emperor-reiter.jpg');
     }
 }

@@ -13,7 +13,8 @@ $handler = new MessageHandler($tgService);
 
 // persisting offset; decided to move into own file for clarity
 $offsetFile = base_path('src/Storage/offset.txt');
-$offset = getLatestOffset($tgService);
+$offset = getStoredOffset($offsetFile);
+
 
 while (true) {
     $updates = $tgService->getUpdates($offset);
@@ -25,9 +26,9 @@ while (true) {
     foreach ($updates as $update) {
         // print_r($update);
 
-        $updateId = $update->updateId;
+        $updateId = $update->updateId; // updateid is essentially offset
         $message = $update->getMessage();
-//        dd($message);
+
         if ($message) {
             $message = $update->getMessage();
             if ($message instanceof \Telegram\Bot\Objects\Message) {

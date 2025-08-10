@@ -8,6 +8,7 @@ $telegram = require base_path('src/Config/telegram.php');
 
 while (true) {
     $queue = file_exists($queueFilePath) ? json_decode(file_get_contents($queueFilePath), true) : [];
+    $tgService = new \Services\TelegramService($telegram);
 
     if (empty($queue)) {
         echo "queue is empty...\n";
@@ -29,13 +30,12 @@ while (true) {
     try {
         $filePath = downloadSoundcloud($url);
 
-        $tgService = new \Services\TelegramService($telegram);
         $tgService->sendAudio((int)$chatId, $filePath);
 
         unlink($filePath);
     } catch (\Exception $e) {
         // TODO: send error message if was not successful
+        $tgService->sendText($chatId, "Something went wrong while downloading your file, try again");
+        $tgService->sendText($chatId, $e->getMessage());
     }
-
-    sleep(2);
 }
